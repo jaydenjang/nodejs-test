@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  nginx:
+    container_name: NODE_NGINX_LB
+    build: ./nginx
+    links:
+      - node-webhook-1:node-webhook-1
+      - node-webhook-2:node-webhook-2
+    ports:
+      - 1337:80
+    depends_on:
+      - node-webhook-1
+      - node-webhook-2
+
+  node-webhook-1:
+    container_name: NODE_WEBHOOK_1
+    image: node-webhook:0.0.1
+    ports:
+      - 1337
+
+  node-webhook-2:
+    container_name: NODE_WEBHOOK_2
+    image: node-webhook:0.0.1
+    ports:
+      - 1337
