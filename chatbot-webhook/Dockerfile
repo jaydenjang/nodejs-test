@@ -15,4 +15,4 @@ EXPOSE 1337
 WORKDIR /src
 
 # execute command on the container
-CMD node index.js
+CMD node index.js 
